@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cart - Sri Lakshmi Janapati Ramesh Shop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#fff7f8;
+      color:#333;
+    }
+
+    /* HEADER */
+
+    header{
+      width:100%;
+      background:white;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .navbar{
+      width:90%;
+      margin:auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 0;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .logo img{
+      width:55px;
+      height:55px;
+      border-radius:50%;
+    }
+
+    .logo h2{
+      color:#c2185b;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:25px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#333;
+      font-weight:500;
+    }
+
+    .nav-links a:hover{
+      color:#c2185b;
+    }
+
+    /* PAGE TITLE */
+
+    .page-title{
+      text-align:center;
+      padding:50px 20px 30px;
+    }
+
+    .page-title h1{
+      color:#c2185b;
+      font-size:40px;
+      margin-bottom:10px;
+    }
+
+    /* CART SECTION */
+
+    .cart-container{
+      width:90%;
+      margin:auto;
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:30px;
+      padding-bottom:60px;
+    }
+
+    .cart-items{
+      display:flex;
+      flex-direction:column;
+      gap:25px;
+    }
+
+    .cart-card{
+      background:white;
+      border-radius:20px;
+      padding:20px;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .cart-card img{
+      width:140px;
+      height:180px;
+      object-fit:cover;
+      border-radius:15px;
+    }
+
+    .cart-details{
+      flex:1;
+    }
+
+    .cart-details h3{
+      margin-bottom:10px;
+    }
+
+    .price{
+      color:#e91e63;
+      font-size:22px;
+      font-weight:600;
+      margin-bottom:10px;
+    }
+
+    .qty{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .qty button{
+      width:35px;
+      height:35px;
+      border:none;
+      border-radius:50%;
+      background:#f8bbd0;
+      cursor:pointer;
+      font-size:18px;
+    }
+
+    .remove-btn{
+      margin-top:15px;
+      background:#ffebee;
+      border:none;
+      padding:10px 18px;
+      border-radius:10px;
+      cursor:pointer;
+      color:#c2185b;
+    }
+
+    /* SUMMARY */
+
+    .summary{
+      background:white;
+      border-radius:20px;
+      padding:30px;
+      height:fit-content;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .summary h2{
+      margin-bottom:25px;
+      color:#c2185b;
+    }
+
+    .summary-row{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:20px;
+      font-size:17px;
+    }
+
+    .total{
+      font-size:24px;
+      font-weight:700;
+      color:#e91e63;
+    }
+
+    .checkout-btn{
+      width:100%;
+      padding:15px;
+      border:none;
+      background:#c2185b;
+      color:white;
+      border-radius:12px;
+      font-size:18px;
+      cursor:pointer;
+      margin-top:20px;
+      transition:0.3s;
+    }
+
+    .checkout-btn:hover{
+      background:#ad1457;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#880e4f;
+      color:white;
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:900px){
+
+      .cart-container{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      .navbar{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .cart-card{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .cart-card img{
+        width:100%;
+        height:300px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="navbar">
+
+      <div class="logo">
+        <img src="file_00000000f3d071fda7286e2f9220c879.png">
+        <h2>Sri Sarees</h2>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="collections.html">Collections</a>
+        <a href="#">Offers</a>
+        <a href="#">Contact</a>
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- PAGE TITLE -->
+
+  <section class="page-title">
+
+    <h1>Shopping Cart</h1>
+
+    <p>
+      Review your selected sarees before checkout
+    </p>
+
+  </section>
+
+  <!-- CART -->
+
+  <section class="cart-container">
+
+    <!-- LEFT -->
+
+    <div class="cart-items">
+
+      <!-- ITEM 1 -->
+
+      <div class="cart-card">
+
+        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop">
+
+        <div class="cart-details">
+
+          <h3>Royal Silk Saree</h3>
+
+          <div class="price">₹2,499</div>
+
+          <p>Color: Pink & Gold</p>
+
+          <div class="qty">
+            <button>-</button>
+            <span>1</span>
+            <button>+</button>
+          </div>
+
+          <button class="remove-btn">
+            Remove Item
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- ITEM 2 -->
+
+      <div class="cart-card">
+
+        <img src="https://images.unsplash.com/photo-1610030469700-c5b2d7b7f7e6?q=80&w=600&auto=format&fit=crop">
+
+        <div class="cart-details">
+
+          <h3>Wedding Saree</h3>
+
+          <div class="price">₹4,999</div>
+
+          <p>Color: Maroon</p>
+
+          <div class="qty">
+            <button>-</button>
+            <span>1</span>
+            <button>+</button>
+          </div>
+
+          <button class="remove-btn">
+            Remove Item
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="summary">
+
+      <h2>Order Summary</h2>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>₹7,498</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Delivery</span>
+        <span>₹99</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Discount</span>
+        <span>-₹500</span>
+      </div>
+
+      <hr>
+
+      <br>
+
+      <div class="summary-row total">
+        <span>Total</span>
+        <span>₹7,097</span>
+      </div>
+
+      <button class="checkout-btn">
+        Proceed To Checkout
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <h2>Sri Lakshmi Janapati Ramesh Shop</h2>
+
+    <br>
+
+    <p>
+      Elegant Sarees For Every Occasion ❤️
+    </p>
+
+    <br>
+
+    <p>
+      📍 Proddatur, Andhra Pradesh
+    </p>
+
+    <p>
+      📞 +91 9876543210
+    </p>
+
+  </footer>
+
+</body>
+</html>
