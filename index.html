@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sarees Shop</title>
+
+  <style>
+
+    body{
+      font-family:Arial;
+      background:#f5f5f5;
+      padding:20px;
+    }
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:white;
+      padding:15px;
+      border-radius:10px;
+      box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+
+    img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      border-radius:10px;
+    }
+
+    button{
+      background:#e91e63;
+      color:white;
+      border:none;
+      padding:10px;
+      width:100%;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<h1>🛍️ Sarees Shop</h1>
+
+<div class="products" id="products"></div>
+
+<script>
+
+const API =
+"https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+
+async function loadProducts(){
+
+  const res = await fetch(API);
+
+  const data = await res.json();
+
+  let html = "";
+
+  data.forEach(product => {
+
+    html += `
+      <div class="card">
+
+        <img src="${product.image}">
+
+        <h3>${product.name}</h3>
+
+        <p>₹ ${product.price}</p>
+
+        <p>Stock : ${product.stock}</p>
+
+        <button onclick='orderProduct(
+          "${product.name}",
+          "${product.price}"
+        )'>
+          Book Now
+        </button>
+
+      </div>
+    `;
+  });
+
+  document.getElementById("products").innerHTML = html;
+}
+
+async function orderProduct(name,price){
+
+  const customer = prompt("Enter Name");
+
+  const phone = prompt("Enter Phone");
+
+  await fetch(API,{
+    method:"POST",
+    body:JSON.stringify({
+      customer,
+      phone,
+      product:name,
+      price
+    })
+  });
+
+  alert("Order Placed Successfully");
+}
+
+loadProducts();
+
+</script>
+
+</body>
+</html>
